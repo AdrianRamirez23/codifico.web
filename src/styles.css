@@ -1,0 +1,123 @@
+/* Fuente */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+p {
+    font-size: 1.8rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--blanco);
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+}
+
+.contenedor {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+/* Table */
+.card-table {
+    margin-top: 5rem;
+}
+.card-table h1{
+    font-size: 3.2rem;
+    font-weight: bold;
+}
+td a:link, td a:visited, td a:active, td button{
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+td a {
+    color: red;
+}
+td a:hover {
+    color: red;
+}
+td button {
+    color: green;
+}
+/* Table Orders View */
+.card-header{
+    background-color: brown;
+    color: white;
+}
+/* Modal New Order */
+.modal-header {
+    background-color: green;
+    color: white;
+}
+.order{
+    border-bottom: 1px solid var(--bs-gray-500);
+}
+.order, .order-details {
+    padding: 2rem 1rem;
+}
+.order h2, .order-details h2{
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+.select-item, .input-item {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 3rem;
+}
+.select-item, .input-item {
+    outline: none;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--bs-gray-500);
+    color: var(--bs-gray-700);
+}
+.two-cols, .three-cols{
+    display: grid;
+    column-gap: 3rem;
+}
+.two-cols {
+    grid-template-columns: repeat(2, 1fr);
+}
+.three-cols{
+    grid-template-columns: repeat(3, 1fr);
+}
+.input-flex{
+    display: flex;
+    column-gap: 0.5rem;
+}
+.input-flex i{
+    margin-top: 0.8rem;
+}
+.btn-cs {
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: green;
+}

@@ -1,0 +1,95 @@
+<div class="container">
+
+    <div class="card card-table">
+        <div class="card-body">
+            <h1>Customers</h1>
+            <div class="col-3 dataTables_length">
+                <label for="search">Show</label>&nbsp;
+                <select [(ngModel)]="pageSize" name="my_table_length"   >
+                    <option *ngFor="let option of selectOptions" (ngValue)="option">{{option}}</option>
+                </select>&nbsp;
+                <label for="search"> entries</label>
+              </div>
+            <table id="my_table" class="table">
+                <thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Last Order Date</th>
+                        <th>Next Predicted Order</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of this.listCustomers | paginate: { itemsPerPage: pageSize, currentPage: page } ">
+                        <td>{{ item.customerName }}</td>
+                        <td>{{ item.lastOrderDate | date:'dd/MM/yyyy' }}</td>
+                        <td>{{ item.nextPredicteOrder | date:'dd/MM/yyyy' }}</td>
+                        <td><a routerLink="/order/{{ item.custid }}">View Orders</a></td>
+                        <td><button type="button" data-bs-toggle="modal" data-bs-target="#newOrderModal">New
+                                Order</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="newOrderModal" tabindex="-1" aria-labelledby="newOrderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="newOrderModalLabel">Customer AHPOP - New Order</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="order">
+                    <h2>Order</h2>
+                    <div class="two-cols">
+                        <select class="select-item" aria-label="Default select example"  [(ngModel)]="empid"  >
+                            <option *ngFor="let option of listEmploys" [ngValue]="option.empid">{{option.fullName}}</option>
+                        </select>
+                        <select class="select-item" aria-label="Default select example" [(ngModel)]="shipperid" >
+                            <option *ngFor="let option of listShippers" [ngValue]="option.shipperid">{{option.companyname}}</option>
+                        </select>
+                    </div>
+                    <input type="text" class="input-item" placeholder="Ship Name*" [(ngModel)]="shipname" >
+                    <div class="three-cols">
+                        <input type="text" class="input-item" placeholder="Ship Address*" [(ngModel)]="shipaddress" >
+                        <input type="text" class="input-item" placeholder="Ship City*" [(ngModel)]="shipcity">
+                        <input type="text" class="input-item" placeholder="Ship Country*" [(ngModel)]="shipcountry" >
+                        <input type="date" class="input-item" data-placeholder="Order Date*" [(ngModel)]="orderdate" >
+                        <input type="date" class="input-item" data-placeholder="Required Date*" [(ngModel)]="requireddate" >
+                        <input type="date" class="input-item" data-placeholder="Shipped Date*" [(ngModel)]="shippeddate">
+                    </div>
+                    <div class="input-flex">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <input type="number" class="input-item" placeholder="Freight*" [(ngModel)]="freigth" (keypress)="validateFormat($event)">
+                    </div>
+                </div>
+
+                <div class="order-details">
+                    <h2>Order Details</h2>
+                    <select class="select-item" aria-label="Default select example"  [(ngModel)]="productid" >
+                        <option *ngFor="let option of listProducts" [ngValue]="option.productid">{{option.productname}}</option>
+                    </select>
+                    <div class="three-cols">
+                        <div class="input-flex">
+                            <i class="fa-solid fa-dollar-sign"></i>
+                            <input type="text" class="input-item" placeholder="Unit Price*" (keypress)="validateFormat($event)" [(ngModel)]="unitPrice" >
+                        </div>
+                        <input type="text" class="input-item" placeholder="Quantity*" [(ngModel)]="qty" (keypress)="validateFormat($event)">
+                        <input type="text" class="input-item" placeholder="Discount*" [(ngModel)]="duscount" (keypress)="validateFormat($event)" >
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-cs" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn-cs" (click)="newOrder()">Save</button>
+            </div>
+        </div>
+    </div>
+
+</div>
